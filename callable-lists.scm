@@ -1,0 +1,34 @@
+(module callable-lists (make-callable-list)
+
+(import chicken scheme)
+(use lolevel)
+
+(define +none+
+  (list 'none))
+
+(define (list-set! l pos val)
+  (if (fx= pos 0)
+      (set-car! l val)
+      (list-set! (cdr l) (- pos 1) val)))
+
+(define (set-callable-list! l pos value)
+  (let* ((items (procedure-data l))
+         (len (length items)))
+    (when (> pos len)
+      (error 'set-callable-list! "Out of range" pos))
+    (list-set! items pos value)))
+
+(define (make-callable-list . items)
+  (let ((getter
+         (extend-procedure
+          (lambda (#!optional (pos +none+))
+            (if (eq? pos +none+)
+                items
+                (list-ref items pos)))
+          items)))
+    (getter-with-setter
+     getter
+     (lambda (pos val)
+       (set-callable-list! getter pos val)))))
+
+) ;; end module

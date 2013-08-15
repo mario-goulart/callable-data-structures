@@ -1,0 +1,52 @@
+;; -*- scheme -*-
+
+(define version "0.0.1")
+
+(compile -d0 -O3 -J -s callable-hash-tables.scm)
+(compile -d0 -O3 -s callable-hash-tables.import.scm)
+
+(compile -d0 -O3 -J -s callable-vectors.scm)
+(compile -d0 -O3 -s callable-vectors.import.scm)
+
+(compile -d0 -O3 -J -s callable-strings.scm)
+(compile -d0 -O3 -s callable-strings.import.scm)
+
+(compile -d0 -O3 -J -s callable-lists.scm)
+(compile -d0 -O3 -s callable-lists.import.scm)
+
+(compile -d0 -O3 -J -s callable-alists.scm)
+(compile -d0 -O3 -s callable-alists.import.scm)
+
+(compile -d0 -O3 -J -s callable-data-structures.scm)
+(compile -d0 -O3 -s callable-data-structures.import.scm)
+
+
+(install-extension
+ 'callable-hash-tables
+ '("callable-hash-tables.so" "callable-hash-tables.import.so")
+ `((version ,version)))
+
+(install-extension
+ 'callable-vectors
+ '("callable-vectors.so" "callable-vectors.import.so")
+ `((version ,version)))
+
+(install-extension
+ 'callable-strings
+ '("callable-strings.so" "callable-strings.import.so")
+ `((version ,version)))
+
+(install-extension
+ 'callable-lists
+ '("callable-lists.so" "callable-lists.import.so")
+ `((version ,version)))
+
+(install-extension
+ 'callable-alists
+ '("callable-alists.so" "callable-alists.import.so")
+ `((version ,version)))
+
+(install-extension
+ 'callable-data-structures
+ '("callable-data-structures.so" "callable-data-structures.import.so")
+ `((version ,version)))

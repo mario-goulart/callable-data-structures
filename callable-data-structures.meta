@@ -1,0 +1,6 @@
+;; -*- scheme -*-
+((synopsis "\"Callable\" data structures")
+ (author "Mario Domenech Goulart")
+ (category data)
+ (license "BSD")
+ (test-depends test))
