@@ -16,4 +16,8 @@
 
 (test '((baz . 3) (quux . 4)) (b))
 
+;; add a new item
+(set! (a 'baz) 43)
+(test 43 (a 'baz))
+
 (test-end "alists")

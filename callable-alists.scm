@@ -6,21 +6,22 @@
 (define +none+
   (list 'none))
 
-(define (set-callable-alist! alist key value)
-  (let ((items (procedure-data alist)))
-    (set! items (alist-update! key value items))))
+(define (set-callable-alist! callable-alist key value)
+  (let ((items (procedure-data callable-alist)))
+    (set-car! items (alist-update! key value (car items)))))
 
 (define (make-callable-alist alist)
-  (let ((getter
-         (extend-procedure
-          (lambda (#!optional (key +none+) test default)
-            (if (eq? key +none+)
-                alist
-                (let ((val (alist-ref key alist (or test eqv?) +none+)))
-                  (if (eq? val +none+)
-                      default
-                      val))))
-          alist)))
+  (let* ((alist (list alist))
+         (getter
+          (extend-procedure
+           (lambda (#!optional (key +none+) test default)
+             (if (eq? key +none+)
+                 (car alist)
+                 (let ((val (alist-ref key (car alist) (or test eqv?) +none+)))
+                   (if (eq? val +none+)
+                       default
+                       val))))
+           alist)))
     (getter-with-setter
      getter
      (lambda (key val)
