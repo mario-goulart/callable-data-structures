@@ -30,4 +30,10 @@
 (set! (c 'foo) 42)
 (test 42 (c 'foo))
 
+;; strings as keys
+(define s (make-callable-alist '() test: equal?))
+(test-assert (null? (s)))
+(set! (s "foo") 42)
+(test 42 (s "foo"))
+
 (test-end "alists")
