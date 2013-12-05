@@ -1,4 +1,4 @@
-(module callable-hash-tables (make-callable-hash-table)
+(module callable-hash-tables (make-callable-hash-table callable-hash-table?)
 
 (import chicken scheme)
 (use srfi-69 lolevel)
@@ -25,6 +25,11 @@
     (getter-with-setter
      getter
      (lambda (key val)
-       (set-callable-hash-table! getter key val)))))
+       (set-callable-hash-table! getter key val))
+     "callable-hash-table")))
+
+(define (callable-hash-table? obj)
+  (and (procedure? obj)
+       (eq? (procedure-information obj) 'callable-hash-table)))
 
 ) ;; end module

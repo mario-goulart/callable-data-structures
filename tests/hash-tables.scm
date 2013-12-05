@@ -18,4 +18,8 @@
 
 (test '(1 2) (sort (map car (hash-table->alist (n))) <))
 
+;; type predicate
+(test-assert (callable-hash-table? h))
+(test-assert (not (callable-hash-table? (lambda () 'foo))))
+
 (test-end "hash-tables")
