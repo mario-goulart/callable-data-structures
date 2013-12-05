@@ -24,4 +24,10 @@
 (test-assert (callable-alist? a))
 (test-assert (not (callable-alist? (lambda () 'foo))))
 
+;; empty initial object
+(define c (make-callable-alist))
+(test-assert (null? (c)))
+(set! (c 'foo) 42)
+(test 42 (c 'foo))
+
 (test-end "alists")

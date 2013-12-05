@@ -10,8 +10,10 @@
   (let ((items (procedure-data callable-alist)))
     (set-car! items (alist-update! key value (car items)))))
 
-(define (make-callable-alist alist)
-  (let* ((alist (list alist))
+(define (make-callable-alist . alist)
+  (let* ((alist (if (null? alist)
+                    '(())
+                    alist))
          (getter
           (extend-procedure
            (lambda (#!optional (key +none+) test default)
