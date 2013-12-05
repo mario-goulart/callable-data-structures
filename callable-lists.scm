@@ -1,4 +1,4 @@
-(module callable-lists (make-callable-list)
+(module callable-lists (make-callable-list callable-list?)
 
 (import chicken scheme)
 (use lolevel)
@@ -29,6 +29,11 @@
     (getter-with-setter
      getter
      (lambda (pos val)
-       (set-callable-list! getter pos val)))))
+       (set-callable-list! getter pos val))
+     "callable-list")))
+
+(define (callable-list? obj)
+  (and (procedure? obj)
+       (eq? (procedure-information obj) 'callable-list)))
 
 ) ;; end module

@@ -14,4 +14,8 @@
 
 (test '(a z c) (l))
 
+;; type predicate
+(test-assert (callable-list? l))
+(test-assert (not (callable-list? (lambda () 'foo))))
+
 (test-end "lists")
