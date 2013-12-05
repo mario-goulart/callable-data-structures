@@ -14,4 +14,8 @@
 
 (test "far" (s))
 
+;; type predicate
+(test-assert (callable-string? s))
+(test-assert (not (callable-string? (lambda () 'foo))))
+
 (test-end "strings")

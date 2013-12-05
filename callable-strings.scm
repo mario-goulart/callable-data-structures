@@ -1,4 +1,4 @@
-(module callable-strings (make-callable-string)
+(module callable-strings (make-callable-string callable-string?)
 
 (import chicken scheme)
 (use lolevel)
@@ -22,6 +22,11 @@
     (getter-with-setter
      getter
      (lambda (pos val)
-       (set-callable-string! getter pos val)))))
+       (set-callable-string! getter pos val))
+     "callable-string")))
+
+(define (callable-string? obj)
+  (and (procedure? obj)
+       (eq? (procedure-information obj) 'callable-string)))
 
 ) ;; end module
