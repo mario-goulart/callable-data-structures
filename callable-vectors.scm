@@ -1,4 +1,4 @@
-(module callable-vectors (make-callable-vector)
+(module callable-vectors (make-callable-vector callable-vector?)
 
 (import chicken scheme)
 (use lolevel)
@@ -22,6 +22,11 @@
     (getter-with-setter
      getter
      (lambda (pos val)
-       (set-callable-vector! getter pos val)))))
+       (set-callable-vector! getter pos val))
+     "callable-vector")))
+
+(define (callable-vector? obj)
+  (and (procedure? obj)
+       (eq? (procedure-information obj) 'callable-vector)))
 
 ) ;; end module

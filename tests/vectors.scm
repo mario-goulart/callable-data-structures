@@ -14,4 +14,8 @@
 
 (test '#(a z c) (v))
 
+;; type predicate
+(test-assert (callable-vector? v))
+(test-assert (not (callable-vector? (lambda () 'foo))))
+
 (test-end "vectors")
