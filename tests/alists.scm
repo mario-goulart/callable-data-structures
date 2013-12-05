@@ -20,4 +20,8 @@
 (set! (a 'baz) 43)
 (test 43 (a 'baz))
 
+;; type predicate
+(test-assert (callable-alist? a))
+(test-assert (not (callable-alist? (lambda () 'foo))))
+
 (test-end "alists")

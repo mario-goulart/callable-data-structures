@@ -1,4 +1,4 @@
-(module callable-alists (make-callable-alist)
+(module callable-alists (make-callable-alist callable-alist?)
 
 (import chicken scheme)
 (use lolevel data-structures)
@@ -25,6 +25,11 @@
     (getter-with-setter
      getter
      (lambda (key val)
-       (set-callable-alist! getter key val)))))
+       (set-callable-alist! getter key val))
+     "callable-alist")))
+
+(define (callable-alist? obj)
+  (and (procedure? obj)
+       (eq? (procedure-information obj) 'callable-alist)))
 
 ) ;; end module
