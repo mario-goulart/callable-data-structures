@@ -11,7 +11,9 @@
     (hash-table-set! items key value)))
 
 (define (make-callable-hash-table . args)
-  (let* ((items (apply alist->hash-table args))
+  (let* ((items (apply alist->hash-table (if (null? args)
+                                             '(())
+                                             args)))
          (getter
           (extend-procedure
            (lambda (#!optional (key +none+) default)

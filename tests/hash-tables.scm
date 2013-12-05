@@ -22,4 +22,11 @@
 (test-assert (callable-hash-table? h))
 (test-assert (not (callable-hash-table? (lambda () 'foo))))
 
+;; empty initial object
+(define c (make-callable-hash-table))
+(test-assert (null? (hash-table->alist (c))))
+(set! (c 'foo) 42)
+(test 42 (c 'foo))
+
+
 (test-end "hash-tables")
