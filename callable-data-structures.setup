@@ -2,23 +2,32 @@
 
 (define version "1.0")
 
-(compile -d0 -O3 -J -s callable-hash-tables.scm)
-(compile -d0 -O3 -s callable-hash-tables.import.scm)
+(define debug-build?
+  (get-environment-variable "EGG_DEBUG_BUILD"))
 
-(compile -d0 -O3 -J -s callable-vectors.scm)
-(compile -d0 -O3 -s callable-vectors.import.scm)
+(define csc-args
+  (cons '-S
+        (if debug-build?
+            '(-O0 -d2)
+            '(-O3 -d1))))
 
-(compile -d0 -O3 -J -s callable-strings.scm)
-(compile -d0 -O3 -s callable-strings.import.scm)
+(compile ,@csc-args -J -s callable-hash-tables.scm)
+(compile ,@csc-args -s callable-hash-tables.import.scm)
 
-(compile -d0 -O3 -J -s callable-lists.scm)
-(compile -d0 -O3 -s callable-lists.import.scm)
+(compile ,@csc-args -J -s callable-vectors.scm)
+(compile ,@csc-args -s callable-vectors.import.scm)
 
-(compile -d0 -O3 -J -s callable-alists.scm)
-(compile -d0 -O3 -s callable-alists.import.scm)
+(compile ,@csc-args -J -s callable-strings.scm)
+(compile ,@csc-args -s callable-strings.import.scm)
 
-(compile -d0 -O3 -J -s callable-data-structures.scm)
-(compile -d0 -O3 -s callable-data-structures.import.scm)
+(compile ,@csc-args -J -s callable-lists.scm)
+(compile ,@csc-args -s callable-lists.import.scm)
+
+(compile ,@csc-args -J -s callable-alists.scm)
+(compile ,@csc-args -s callable-alists.import.scm)
+
+(compile ,@csc-args -J -s callable-data-structures.scm)
+(compile ,@csc-args -s callable-data-structures.import.scm)
 
 
 (install-extension
