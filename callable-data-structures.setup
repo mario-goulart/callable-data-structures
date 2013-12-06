@@ -1,6 +1,6 @@
 ;; -*- scheme -*-
 
-(define version "0.0.1")
+(define version "1.0")
 
 (compile -d0 -O3 -J -s callable-hash-tables.scm)
 (compile -d0 -O3 -s callable-hash-tables.import.scm)
