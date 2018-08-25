@@ -1,4 +1,10 @@
-(use callable-lists)
+(cond-expand
+  (chicken-4
+   (use callable-lists))
+  (chicken-5
+   (import callable-lists))
+  (else
+   (error "Unsupported CHICKEN version.")))
 
 (test-begin "lists")
 

@@ -1,4 +1,11 @@
-(use callable-alists)
+(cond-expand
+  (chicken-4
+   (use callable-alists))
+  (chicken-5
+   (import (chicken sort))
+   (import callable-alists))
+  (else
+   (error "Unsupported CHICKEN version.")))
 
 (test-begin "alists")
 

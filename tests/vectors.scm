@@ -1,4 +1,10 @@
-(use callable-vectors)
+(cond-expand
+  (chicken-4
+   (use callable-vectors))
+  (chicken-5
+   (import callable-vectors))
+  (else
+   (error "Unsupported CHICKEN version.")))
 
 (test-begin "vectors")
 

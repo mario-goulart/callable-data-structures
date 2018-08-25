@@ -1,4 +1,10 @@
-(use callable-strings)
+(cond-expand
+  (chicken-4
+   (use callable-strings))
+  (chicken-5
+   (import callable-strings))
+  (else
+   (error "Unsupported CHICKEN version.")))
 
 (test-begin "strings")
 

@@ -1,7 +1,15 @@
 (module callable-alists (make-callable-alist callable-alist?)
 
-(import chicken scheme)
-(use lolevel data-structures)
+(import scheme)
+(cond-expand
+  (chicken-4
+   (import chicken)
+   (use data-structures lolevel))
+  (chicken-5
+   (import (chicken base)
+           (chicken memory representation)))
+  (else
+   (error "Unsupported CHICKEN version.")))
 
 (define +none+
   (list 'none))

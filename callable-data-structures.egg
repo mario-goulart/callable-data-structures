@@ -1,0 +1,17 @@
+;;; callable-data-structures.egg -*- scheme -*-
+
+((synopsis "\"Callable\" data structures")
+ (author "Mario Domenech Goulart")
+ (license "BSD")
+ (category data)
+ (dependencies srfi-69)
+ (test-dependencies test)
+ (component-options
+  (csc-options "-O3" "-d1"))
+ (components (extension callable-data-structures)
+             (extension callable-hash-tables)
+             (extension callable-vectors)
+             (extension callable-strings)
+             (extension callable-lists)
+             (extension callable-alists)
+             ))

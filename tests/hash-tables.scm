@@ -1,4 +1,11 @@
-(use callable-hash-tables)
+(cond-expand
+  (chicken-4
+   (use callable-hash-tables srfi-69))
+  (chicken-5
+   (import (chicken sort))
+   (import callable-hash-tables srfi-69))
+  (else
+   (error "Unsupported CHICKEN version.")))
 
 (test-begin "hash-tables")
 

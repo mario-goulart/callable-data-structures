@@ -1,7 +1,16 @@
 (module callable-hash-tables (make-callable-hash-table callable-hash-table?)
 
-(import chicken scheme)
-(use srfi-69 lolevel)
+(import scheme)
+(cond-expand
+  (chicken-4
+   (import chicken)
+   (use srfi-69 lolevel))
+  (chicken-5
+   (import (chicken base)
+           (chicken memory representation))
+   (import srfi-69))
+  (else
+   (error "Unsupported CHICKEN version.")))
 
 (define +none+
   (list 'none))

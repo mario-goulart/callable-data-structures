@@ -1,7 +1,15 @@
 (module callable-strings (make-callable-string callable-string?)
 
-(import chicken scheme)
-(use lolevel)
+(import scheme)
+(cond-expand
+  (chicken-4
+   (import chicken)
+   (use lolevel))
+  (chicken-5
+   (import (chicken base)
+           (chicken memory representation)))
+  (else
+   (error "Unsupported CHICKEN version.")))
 
 (define +none+
   (list 'none))
