@@ -1,6 +1,6 @@
 ;; -*- scheme -*-
 
-(define version "1.0.2")
+(define version "1.0.3")
 
 (define debug-build?
   (get-environment-variable "EGG_DEBUG_BUILD"))
